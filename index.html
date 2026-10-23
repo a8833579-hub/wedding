@@ -3,544 +3,421 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دعوة زفاف Ahmed & R</title>
+    <title>دعوة زفاف | Ahmed & R</title>
     
-    <!-- Fonts -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary-gold: #d4af37;
-            --gold-glow: #ffe57f;
-            --soft-pink: #fdfbfb;
-            --text-dark: #2c3e50;
-            --bg-gradient: linear-gradient(135deg, #fff5f5 0%, #fef3ef 50%, #fbf0f3 100%);
+            --primary-color: #8B5E3C;
+            --accent-color: #D4AF37;
+            --bg-color: #FAF7F2;
+            --card-bg: #FFFFFF;
+            --text-color: #2C2C2C;
+            --soft-text: #666666;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: 'Cairo', sans-serif;
         }
 
         body {
-            font-family: 'Cairo', sans-serif;
-            background: var(--bg-gradient);
-            color: var(--text-dark);
-            overflow-x: hidden;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        /* glowing English Name Style */
-        .glowing-name {
-            font-family: 'Playfair Display', 'Great Vibes', serif;
-            direction: ltr;
-            display: inline-block;
-            color: #ffffff;
-            text-shadow: 
-                0 0 5px #fff,
-                0 0 10px #d4af37,
-                0 0 20px #d4af37,
-                0 0 30px #d4af37,
-                0 0 40px #aa7c11;
-            animation: neonGlow 2s infinite alternate ease-in-out;
-        }
-
-        .big-r {
-            font-size: 1.4em;
-            font-weight: bold;
-            color: #fff8e1;
-            display: inline-block;
-            text-shadow: 
-                0 0 8px #fff,
-                0 0 15px #ffd700,
-                0 0 25px #ffd700,
-                0 0 35px #ff8c00;
-        }
-
-        @keyframes neonGlow {
-            from {
-                text-shadow: 
-                    0 0 5px #fff,
-                    0 0 10px #d4af37,
-                    0 0 15px #d4af37,
-                    0 0 20px #aa7c11;
-            }
-            to {
-                text-shadow: 
-                    0 0 10px #fff,
-                    0 0 20px #ffeb3b,
-                    0 0 30px #ffd700,
-                    0 0 40px #ff9800,
-                    0 0 50px #ff5722;
-            }
-        }
-
-        /* Overlay Envelope Screen */
-        #envelope-screen {
+        /* Splash / Welcome Overlay */
+        #welcome-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+            background-color: var(--bg-color);
+            z-index: 9999;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 9999;
-            transition: opacity 1.2s ease, visibility 1.2s ease;
             text-align: center;
             padding: 20px;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
         }
 
-        #envelope-screen.hidden {
+        #welcome-overlay.hidden {
             opacity: 0;
             visibility: hidden;
-            pointer-events: none;
         }
 
         .welcome-title {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .welcome-title span {
+            color: var(--accent-color);
         }
 
         .welcome-sub {
-            color: #ffffff;
-            font-size: 1.3rem;
-            margin-bottom: 35px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-
-        /* Glowing Button */
-        .open-btn {
-            padding: 16px 45px;
-            font-size: 1.4rem;
-            font-family: 'Cairo', sans-serif;
-            font-weight: 700;
-            color: #ffffff;
-            background: linear-gradient(45deg, #d4af37, #f9d976, #d4af37);
-            background-size: 200% 200%;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.8), 0 0 30px rgba(212, 175, 55, 0.5);
-            animation: pulseGlow 1.8s infinite, gradientMove 3s infinite;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .open-btn:hover {
-            transform: scale(1.08);
-        }
-
-        @keyframes pulseGlow {
-            0% {
-                box-shadow: 0 0 15px rgba(212, 175, 55, 0.8), 0 0 25px rgba(212, 175, 55, 0.4);
-            }
-            50% {
-                box-shadow: 0 0 25px rgba(255, 229, 127, 1), 0 0 50px rgba(252, 213, 107, 0.9), 0 0 70px rgba(212, 175, 55, 0.7);
-            }
-            100% {
-                box-shadow: 0 0 15px rgba(212, 175, 55, 0.8), 0 0 25px rgba(212, 175, 55, 0.4);
-            }
-        }
-
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Light burst Effect on click */
-        .light-flash {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            width: 10px;
-            height: 10px;
-            background: radial-gradient(circle, #ffffff 0%, #ffe57f 40%, rgba(212,175,55,0) 70%);
-            border-radius: 50%;
-            z-index: 10000;
-            pointer-events: none;
-            transition: transform 0.9s cubic-bezier(0.1, 0.8, 0.3, 1), opacity 0.9s ease;
-        }
-
-        .light-flash.active {
-            transform: translate(-50%, -50%) scale(300);
-            opacity: 0;
-        }
-
-        /* Floating Hearts Container */
-        #hearts-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9998;
-            overflow: hidden;
-        }
-
-        .heart {
-            position: absolute;
-            bottom: -50px;
-            color: #e74c3c;
-            font-size: 20px;
-            animation: floatUp linear infinite;
-            opacity: 0.8;
-        }
-
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0) rotate(0deg) scale(0.8);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-105vh) rotate(360deg) scale(1.3);
-                opacity: 0;
-            }
-        }
-
-        /* Main Content Layout */
-        .main-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.92);
-            border-radius: 20px;
-            padding: 35px 25px;
+            font-size: 1.1rem;
+            color: var(--soft-text);
             margin-bottom: 30px;
+        }
+
+        .enter-btn {
+            background-color: var(--primary-color);
+            color: #FFFFFF;
+            border: none;
+            padding: 12px 35px;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(139, 94, 60, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .enter-btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* Main Container */
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: var(--card-bg);
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-radius: 15px;
+            margin: 20px auto;
+            padding: 30px 20px;
             text-align: center;
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
         }
 
         .quran-verse {
             font-family: 'Amiri', serif;
-            font-size: 1.35rem;
-            color: #4a5568;
-            line-height: 2.1;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            line-height: 1.8;
             margin-bottom: 20px;
+            padding: 15px;
+            border-bottom: 1px solid #EAEAEA;
         }
 
-        .main-title {
-            font-size: 2.6rem;
+        .names-header h1 {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin: 15px 0 5px 0;
+        }
+
+        .names-header h1 span {
+            color: var(--accent-color);
+        }
+
+        .names-header p {
+            font-size: 1rem;
+            color: var(--soft-text);
+        }
+
+        .main-message {
+            background-color: #FAF6F0;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-color);
             margin: 20px 0;
         }
 
-        .main-title .glowing-name {
-            color: #d4af37;
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+        /* Notice Box for Lunch Details */
+        .lunch-notice {
+            background-color: #FFFDF0;
+            border: 1px dashed var(--accent-color);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            color: #5A4010;
+            line-height: 1.8;
         }
 
-        /* Countdown Timer */
-        .countdown-title {
-            font-size: 1.5rem;
-            color: var(--text-dark);
-            margin-bottom: 15px;
+        .lunch-notice p {
+            font-size: 1.05rem;
+            font-weight: 600;
         }
 
-        .timer-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            margin-top: 20px;
+        /* Section Cards */
+        .section-box {
+            margin: 30px 0;
+            padding-top: 20px;
+            border-top: 1px solid #EAEAEA;
         }
 
-        .timer-box {
-            background: linear-gradient(135deg, #ffffff, #fffdf8);
-            border: 2px solid var(--primary-gold);
-            border-radius: 12px;
-            padding: 12px 5px;
-            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.15);
+        .section-title {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
-        .timer-num {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #b38f24;
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .time-box {
+            background: var(--bg-color);
+            padding: 10px;
+            border-radius: 8px;
+            min-width: 65px;
+        }
+
+        .time-box span:first-child {
             display: block;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
         }
 
-        .timer-label {
-            font-size: 0.85rem;
-            color: #718096;
+        .time-box span:last-child {
+            font-size: 0.8rem;
+            color: var(--soft-text);
         }
 
-        /* Story Section */
         .story-img {
             width: 100%;
-            max-height: 380px;
+            max-height: 250px;
             object-fit: cover;
-            border-radius: 15px;
+            border-radius: 10px;
             margin: 15px 0;
         }
 
-        /* Wishes Form Styles */
-        .wishes-form {
+        .story-p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--soft-text);
+        }
+
+        /* Form Inputs for Wishes */
+        .wish-form {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            max-width: 450px;
-            margin: 20px auto 0 auto;
-            text-align: right;
+            gap: 12px;
+            margin-top: 15px;
         }
 
-        .wishes-input, .wishes-textarea {
+        .wish-input, .wish-textarea {
             width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #d4af37;
-            border-radius: 10px;
-            font-family: 'Cairo', sans-serif;
-            font-size: 1rem;
+            padding: 12px;
+            border: 1px solid #DDD;
+            border-radius: 8px;
+            font-size: 0.95rem;
             outline: none;
-            background: #fffdf9;
-            transition: border-color 0.3s;
+            transition: border-color 0.3s ease;
         }
 
-        .wishes-input:focus, .wishes-textarea:focus {
-            border-color: #b38f24;
-            box-shadow: 0 0 5px rgba(212, 175, 55, 0.4);
+        .wish-input:focus, .wish-textarea:focus {
+            border-color: var(--primary-color);
         }
 
-        .wishes-textarea {
-            resize: none;
-            height: 100px;
-        }
-
-        .whatsapp-send-btn {
-            background: #25d366;
+        .btn-wa {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: #25D366;
             color: white;
             border: none;
             padding: 12px;
-            border-radius: 10px;
-            font-family: 'Cairo', sans-serif;
-            font-size: 1.1rem;
-            font-weight: bold;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
             cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            transition: background 0.3s, transform 0.2s;
-            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+            transition: background 0.3s ease;
         }
 
-        .whatsapp-send-btn:hover {
-            background: #20ba5a;
-            transform: translateY(-2px);
+        .btn-wa:hover {
+            background-color: #1EBE5D;
         }
 
-        /* Music Floating Control */
+        /* Floating Music Control Button */
         .music-btn {
             position: fixed;
             bottom: 25px;
             left: 25px;
             width: 50px;
             height: 50px;
-            background: var(--primary-gold);
-            color: white;
+            background-color: var(--primary-color);
+            color: #fff;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.3rem;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             z-index: 1000;
-            transition: transform 0.3s;
-        }
-
-        .music-btn:hover {
-            transform: scale(1.1);
-        }
-
-        @media (max-width: 600px) {
-            .welcome-title { font-size: 2.1rem; }
-            .main-title { font-size: 2rem; }
-            .timer-num { font-size: 1.4rem; }
         }
     </style>
 </head>
 <body>
 
     <!-- Audio Element -->
-    <audio id="bg-audio" loop preload="auto">
+    <audio id="weddingAudio" loop preload="auto">
         <source src="https://mrshy8196-droid.github.io/Wedding-invitation/Assest/audio.mp3" type="audio/mp3">
     </audio>
 
-    <!-- Overlay Envelope Screen -->
-    <div id="envelope-screen">
-        <h1 class="welcome-title glowing-name">Ahmed &amp; <span class="big-r">R</span></h1>
+    <!-- Welcome Overlay / Splash Screen -->
+    <div id="welcome-overlay">
+        <h1 class="welcome-title">Ahmed & <span>R</span></h1>
         <p class="welcome-sub">يسعدنا أن تشاركونا فرحة العمر ✨</p>
-        <button class="open-btn" onclick="openInvitation()">✨ افتح الدعوة ✨</button>
+        <button class="enter-btn" id="enterBtn">افتح الدعوة 💌</button>
     </div>
 
-    <!-- Light Burst animation element -->
-    <div id="light-flash" class="light-flash"></div>
-
-    <!-- Container for floating hearts -->
-    <div id="hearts-container"></div>
-
-    <!-- Main Content -->
-    <div class="main-container">
-        
-        <div class="card">
+    <!-- Main Invitation Content -->
+    <div class="container">
+        <div>
             <p class="quran-verse">
                 ﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ﴾
             </p>
-            <p style="font-size: 1.1rem; color: #718096;">يتشرف العائلتان بدعوتكم لحضور حفل زفاف</p>
             
-            <h1 class="main-title glowing-name">Ahmed &amp; <span class="big-r">R</span></h1>
+            <p>يتشرف العائلتان بدعوتكم لحضور حفل زفاف</p>
             
-            <p style="font-size: 1.2rem; color: #d4af37; font-weight: 600;">ليلة تكتمل فيها سعادتنا بحضوركم الكريم ✨</p>
+            <div class="names-header">
+                <h1>Ahmed & <span>R</span></h1>
+                <p>ليلة تكتمل فيها سعادتنا بحضوركم الكريم ✨</p>
+            </div>
             
-            <div style="margin-top: 20px; line-height: 1.8; color: #4a5568;">
+            <div class="main-message">
                 فرحتنا ما تكملش إلا بوجودكم جنبنا في أحلى يوم في حياتنا..<br>
                 هنكون مبسوطين جداً بوجودكم ومشاركتكم لفرحتنا، وجودكم بيبصم في قلوبنا ذكرى جميلة مش هننساها أبداً. ❤️
             </div>
         </div>
 
-        <!-- Countdown Card -->
-        <div class="card">
-            <h2 class="countdown-title">
-                <i class="fa-regular fa-clock" style="color: var(--primary-gold);"></i>
+        <!-- تفاصيل مكان وموعد الغداء -->
+        <div class="lunch-notice">
+            <p>مكان الغداء عند بيت العريس والموعد بعد صلاة الظهر والفرح عبارة عن غداء فقط وذلك بعد صلاة الظهر ✨</p>
+        </div>
+
+        <!-- Countdown Section -->
+        <div class="section-box">
+            <h2 class="section-title">
+                <i class="fas fa-hourglass-half"></i>
                 العد التنازلي ليوم الفرح
             </h2>
-            <p style="color: #718096; font-weight: 600;">9 نوفمبر 2026</p>
+            <p style="font-weight: 600; color: var(--primary-color); margin-top: 5px;">9 نوفمبر 2026</p>
             
-            <div class="timer-grid">
-                <div class="timer-box">
-                    <span class="timer-num" id="days">00</span>
-                    <span class="timer-label">يوم</span>
+            <div class="countdown">
+                <div class="time-box">
+                    <span id="days">00</span>
+                    <span>يوم</span>
                 </div>
-                <div class="timer-box">
-                    <span class="timer-num" id="hours">00</span>
-                    <span class="timer-label">ساعة</span>
+                <div class="time-box">
+                    <span id="hours">00</span>
+                    <span>ساعة</span>
                 </div>
-                <div class="timer-box">
-                    <span class="timer-num" id="minutes">00</span>
-                    <span class="timer-label">دقيقة</span>
+                <div class="time-box">
+                    <span id="minutes">00</span>
+                    <span>دقيقة</span>
                 </div>
-                <div class="timer-box">
-                    <span class="timer-num" id="seconds">00</span>
-                    <span class="timer-label">ثانية</span>
+                <div class="time-box">
+                    <span id="seconds">00</span>
+                    <span>ثانية</span>
                 </div>
             </div>
         </div>
 
         <!-- Story Section -->
-        <div class="card">
-            <h2 class="countdown-title">
-                <i class="fa-solid fa-heart" style="color: #e74c3c;"></i>
+        <div class="section-box">
+            <h2 class="section-title">
+                <i class="fas fa-heart"></i>
                 قصتنا
             </h2>
             <img class="story-img" alt="صورة الزفاف" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80">
-            <p style="line-height: 1.9; color: #4a5568; margin-top: 15px;">
+            <p class="story-p">
                 بدأت رحلتنا بنية صالحة وخطوات باركها الله بالمودة والتفاهم..<br>
                 واليوم ننسج معاً بداية عهد جديد ملؤه السكن والرحمة،<br>
                 سائلين المولى أن يجعل ديارنا عامرة بالخير وبدعواتكم الطيبة. ❤️
             </p>
         </div>
 
-        <!-- Send Wishes Section with WhatsApp Integration -->
-        <div class="card">
-            <h2 class="countdown-title">
-                <i class="fa-solid fa-paper-plane" style="color: var(--primary-gold);"></i>
+        <!-- WhatsApp Section مع الخانات لإدخال الاسم والتهنئة -->
+        <div class="section-box">
+            <h2 class="section-title">
+                <i class="fas fa-comment-dots"></i>
                 أرسل مباركتك للعروسين
             </h2>
-            <p style="color: #718096; font-size: 0.95rem; margin-bottom: 10px;">شاركونا تهانيكم وأمنياتكم الطيبة مباشرة عبر الواتساب</p>
+            <p style="font-size: 0.9rem; color: var(--soft-text);">شاركونا تهانيكم وأمنياتكم الطيبة مباشرة عبر الواتساب</p>
             
-            <div class="wishes-form">
-                <div>
-                    <label style="display: block; font-size: 0.9rem; margin-bottom: 5px; color: #4a5568;">اسمك الكريم:</label>
-                    <input type="text" id="wish-name" class="wishes-input" placeholder="اكتب اسمك هنا...">
-                </div>
-                <div>
-                    <label style="display: block; font-size: 0.9rem; margin-bottom: 5px; color: #4a5568;">التهنئة أو الأمنية:</label>
-                    <textarea id="wish-message" class="wishes-textarea" placeholder="اكتب تهنئتك للعروسين هنا..."></textarea>
-                </div>
-                <button class="whatsapp-send-btn" onclick="sendWishToWhatsApp()">
-                    <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i> إرسال التهنئة عبر الواتساب
+            <div class="wish-form">
+                <input type="text" id="guestName" class="wish-input" placeholder="اكتب اسمك الكريم هنا..." required>
+                <textarea id="guestMessage" class="wish-textarea" rows="3" placeholder="اكتب مباركتك أو تهنئتك للعروسين..." required></textarea>
+                <button type="button" onclick="sendWhatsAppMessage()" class="btn-wa">
+                    <i class="fab fa-whatsapp"></i>
+                    إرسال تهنئة العروسين
                 </button>
             </div>
         </div>
-
     </div>
 
-    <!-- Floating Music Button -->
-    <div class="music-btn" id="music-btn" onclick="toggleAudio()" title="تشغيل / إيقاف الموسيقى">
-        <i class="fa-solid fa-music" id="music-icon"></i>
+    <!-- Floating Audio Toggle Button -->
+    <div class="music-btn" id="musicToggle" title="تشغيل / إيقاف الموسيقى">
+        <i class="fas fa-pause" id="musicIcon"></i>
     </div>
 
     <script>
-        const audio = document.getElementById('bg-audio');
+        const audio = document.getElementById('weddingAudio');
+        const enterBtn = document.getElementById('enterBtn');
+        const welcomeOverlay = document.getElementById('welcome-overlay');
+        const musicBtn = document.getElementById('musicToggle');
+        const musicIcon = document.getElementById('musicIcon');
         let isPlaying = false;
 
-        function openInvitation() {
-            // Trigger Light Burst
-            const flash = document.getElementById('light-flash');
-            flash.classList.add('active');
-
-            // Play Audio
+        enterBtn.addEventListener('click', () => {
+            welcomeOverlay.classList.add('hidden');
             audio.play().then(() => {
                 isPlaying = true;
-            }).catch(err => console.log("Audio play blocked:", err));
+                musicIcon.className = 'fas fa-pause';
+            }).catch(err => {
+                console.log("Audio autoplay restricted:", err);
+            });
+        });
 
-            // Hide Envelope Screen after burst
-            setTimeout(() => {
-                document.getElementById('envelope-screen').classList.add('hidden');
-            }, 500);
-
-            // Start Spawning Floating Hearts
-            startHearts();
-        }
-
-        function toggleAudio() {
-            const icon = document.getElementById('music-icon');
+        musicBtn.addEventListener('click', () => {
             if (isPlaying) {
                 audio.pause();
-                isPlaying = false;
-                icon.className = 'fa-solid fa-volume-xmark';
+                musicIcon.className = 'fas fa-music';
             } else {
                 audio.play();
-                isPlaying = true;
-                icon.className = 'fa-solid fa-music';
+                musicIcon.className = 'fas fa-pause';
             }
-        }
+            isPlaying = !isPlaying;
+        });
 
-        // Send Wish to WhatsApp Function
-        function sendWishToWhatsApp() {
-            const nameInput = document.getElementById('wish-name').value.trim();
-            const messageInput = document.getElementById('wish-message').value.trim();
+        const targetDate = new Date("November 9, 2026 12:00:00").getTime();
 
-            if (!nameInput || !messageInput) {
-                alert('من فضلك ادخل اسمك واكتب رسالة التهنئة أولاً ❤️');
-                return;
-            }
-
-            const phoneNumber = '201012577992';
-            const text = `🎉 تهنئة بمناسبة الزفاف:\n\n👤 الاسم: ${nameInput}\n💬 التهنئة: ${messageInput}\n\n✨ ألف مبروك للعروسين Ahmed & R ✨`;
-            const encodedText = encodeURIComponent(text);
-            
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedText}`;
-            window.open(whatsappURL, '_blank');
-        }
-
-        // Countdown Timer Logic
-        const targetDate = new Date('November 9, 2026 18:00:00').getTime();
-
-        function updateCountdown() {
+        const updateTimer = () => {
             const now = new Date().getTime();
             const difference = targetDate - now;
 
@@ -550,35 +427,32 @@
                 const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-                document.getElementById('days').innerText = String(days).padStart(2, '0');
-                document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-                document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-                document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+                document.getElementById('days').innerText = days < 10 ? '0' + days : days;
+                document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+                document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
             }
-        }
+        };
 
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+        setInterval(updateTimer, 1000);
+        updateTimer();
 
-        // Floating Hearts Generator
-        function startHearts() {
-            const container = document.getElementById('hearts-container');
-            const heartIcons = ['❤️', '💖', '✨', '💕', '💗'];
+        // دالة إرسال التهنئة عبر الواتساب باسم الزائر ورسالته
+        function sendWhatsAppMessage() {
+            const name = document.getElementById('guestName').value.trim();
+            const message = document.getElementById('guestMessage').value.trim();
 
-            setInterval(() => {
-                const heart = document.createElement('div');
-                heart.className = 'heart';
-                heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                heart.style.fontSize = (Math.random() * 15 + 18) + 'px';
+            if (!name || !message) {
+                alert('من فضلك ادخل اسمك ورسالة التهنئة أولاً ❤️');
+                return;
+            }
 
-                container.appendChild(heart);
-
-                setTimeout(() => {
-                    heart.remove();
-                }, 6000);
-            }, 400);
+            const phoneNumber = "201012577992";
+            const fullText = `أهلاً، أنا (${name}) ✨\n\n${message}`;
+            const encodedText = encodeURIComponent(fullText);
+            
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedText}`;
+            window.open(whatsappUrl, '_blank');
         }
     </script>
 </body>
