@@ -41,14 +41,54 @@
             position: relative;
         }
 
-        /* Splash / Welcome Overlay */
+        /* Container for background floating hearts/flowers */
+        #particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-element {
+            position: absolute;
+            font-size: 1.2rem;
+            user-select: none;
+            animation: floatUp 8s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(105vh) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Splash / Welcome Overlay مع خلفية العروسين الأصلية */
         #welcome-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--bg-color);
+            background-color: rgba(250, 247, 242, 0.85); /* لون الخلفية مع شفافة خفيفة */
+            background-image: linear-gradient(rgba(250, 247, 242, 0.85), rgba(250, 247, 242, 0.85)), url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
             z-index: 9999;
             display: flex;
             flex-direction: column;
@@ -62,6 +102,16 @@
         #welcome-overlay.hidden {
             opacity: 0;
             visibility: hidden;
+        }
+
+        .welcome-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 450px;
+            width: 100%;
+            border: 1px solid rgba(212, 175, 55, 0.3);
         }
 
         .welcome-title {
@@ -85,17 +135,59 @@
             background-color: var(--primary-color);
             color: #FFFFFF;
             border: none;
-            padding: 12px 35px;
-            font-size: 1.1rem;
-            border-radius: 25px;
+            padding: 14px 40px;
+            font-size: 1.15rem;
+            border-radius: 30px;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(139, 94, 60, 0.3);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .enter-btn:hover {
             background-color: var(--accent-color);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+        }
+
+        /* Glowing Effect on Click */
+        .enter-btn.glow {
+            animation: pulseGlow 0.6s ease-in-out forwards;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.8);
+            }
+            50% {
+                box-shadow: 0 0 30px 15px rgba(212, 175, 55, 1);
+                transform: scale(1.08);
+            }
+            100% {
+                box-shadow: 0 0 50px 25px rgba(212, 175, 55, 0);
+                transform: scale(1);
+            }
+        }
+
+        /* Explosive Heart Particle */
+        .burst-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            font-size: 1.5rem;
+            animation: burstAnimation 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes burstAnimation {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(var(--rot));
+            }
         }
 
         /* Main Container */
@@ -109,6 +201,7 @@
             padding: 30px 20px;
             text-align: center;
             position: relative;
+            z-index: 2;
         }
 
         .quran-verse {
@@ -192,6 +285,11 @@
             padding: 10px;
             border-radius: 8px;
             min-width: 65px;
+            transition: transform 0.3s ease;
+        }
+
+        .time-box:hover {
+            transform: translateY(-3px);
         }
 
         .time-box span:first-child {
@@ -212,6 +310,7 @@
             object-fit: cover;
             border-radius: 10px;
             margin: 15px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .story-p {
@@ -235,11 +334,12 @@
             border-radius: 8px;
             font-size: 0.95rem;
             outline: none;
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .wish-input:focus, .wish-textarea:focus {
             border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(139, 94, 60, 0.2);
         }
 
         .btn-wa {
@@ -255,11 +355,13 @@
             font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
         }
 
         .btn-wa:hover {
             background-color: #1EBE5D;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
         }
 
         /* Floating Music Control Button */
@@ -278,21 +380,31 @@
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
         }
     </style>
 </head>
 <body>
+
+    <!-- Container for falling background particles -->
+    <div id="particles-container"></div>
 
     <!-- Audio Element -->
     <audio id="weddingAudio" loop preload="auto">
         <source src="https://mrshy8196-droid.github.io/Wedding-invitation/Assest/audio.mp3" type="audio/mp3">
     </audio>
 
-    <!-- Welcome Overlay / Splash Screen -->
+    <!-- Welcome Overlay / Splash Screen مع خلفية العروسين الأصلية -->
     <div id="welcome-overlay">
-        <h1 class="welcome-title">Ahmed & <span>R</span></h1>
-        <p class="welcome-sub">يسعدنا أن تشاركونا فرحة العمر ✨</p>
-        <button class="enter-btn" id="enterBtn">افتح الدعوة 💌</button>
+        <div class="welcome-card">
+            <h1 class="welcome-title">Ahmed & <span>R</span></h1>
+            <p class="welcome-sub">يسعدنا أن تشاركونا فرحة العمر ✨</p>
+            <button class="enter-btn" id="enterBtn">افتح الدعوة 💌</button>
+        </div>
     </div>
 
     <!-- Main Invitation Content -->
@@ -362,7 +474,7 @@
             </p>
         </div>
 
-        <!-- WhatsApp Section مع الخانات لإدخال الاسم والتهنئة -->
+        <!-- WhatsApp Section -->
         <div class="section-box">
             <h2 class="section-title">
                 <i class="fas fa-comment-dots"></i>
@@ -373,7 +485,7 @@
             <div class="wish-form">
                 <input type="text" id="guestName" class="wish-input" placeholder="اكتب اسمك الكريم هنا..." required>
                 <textarea id="guestMessage" class="wish-textarea" rows="3" placeholder="اكتب مباركتك أو تهنئتك للعروسين..." required></textarea>
-                <button type="button" onclick="sendWhatsAppMessage()" class="btn-wa">
+                <button type="button" onclick="sendWhatsAppMessage(event)" class="btn-wa">
                     <i class="fab fa-whatsapp"></i>
                     إرسال تهنئة العروسين
                 </button>
@@ -392,18 +504,74 @@
         const welcomeOverlay = document.getElementById('welcome-overlay');
         const musicBtn = document.getElementById('musicToggle');
         const musicIcon = document.getElementById('musicIcon');
+        const particlesContainer = document.getElementById('particles-container');
         let isPlaying = false;
 
-        enterBtn.addEventListener('click', () => {
-            welcomeOverlay.classList.add('hidden');
-            audio.play().then(() => {
-                isPlaying = true;
-                musicIcon.className = 'fas fa-pause';
-            }).catch(err => {
-                console.log("Audio autoplay restricted:", err);
-            });
+        // 1. خروج قلوب وورود متطايرة في خلفية الصفحة باستمرار
+        const symbols = ['❤️', '💖', '🌸', '🌹', '✨', '💕', '🌷'];
+        
+        function createFloatingElement() {
+            const el = document.createElement('div');
+            el.className = 'floating-element';
+            el.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            el.style.fontSize = (Math.random() * 1.2 + 0.8) + 'rem';
+            particlesContainer.appendChild(el);
+
+            setTimeout(() => {
+                el.remove();
+            }, 10000);
+        }
+        setInterval(createFloatingElement, 400);
+
+        // 2. دالة انفجار قلوب عند الضغط على الأزرار (Burst Effects)
+        function createHeartBurst(x, y) {
+            for (let i = 0; i < 25; i++) {
+                const burst = document.createElement('div');
+                burst.className = 'burst-heart';
+                burst.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+                
+                const angle = Math.random() * Math.PI * 2;
+                const dist = Math.random() * 120 + 50;
+                const tx = Math.cos(angle) * dist + 'px';
+                const ty = Math.sin(angle) * dist + 'px';
+                const rot = (Math.random() * 360) + 'deg';
+
+                burst.style.left = x + 'px';
+                burst.style.top = y + 'px';
+                burst.style.setProperty('--tx', tx);
+                burst.style.setProperty('--ty', ty);
+                burst.style.setProperty('--rot', rot);
+
+                document.body.appendChild(burst);
+
+                setTimeout(() => burst.remove(), 1000);
+            }
+        }
+
+        // 3. عند الضغط على زر افتتاح الدعوة
+        enterBtn.addEventListener('click', (e) => {
+            const rect = enterBtn.getBoundingClientRect();
+            const clickX = rect.left + rect.width / 2;
+            const clickY = rect.top + rect.height / 2;
+
+            // توهج الزرار + انفجار القلوب
+            enterBtn.classList.add('glow');
+            createHeartBurst(clickX, clickY);
+
+            setTimeout(() => {
+                welcomeOverlay.classList.add('hidden');
+                audio.play().then(() => {
+                    isPlaying = true;
+                    musicIcon.className = 'fas fa-pause';
+                }).catch(err => {
+                    console.log("Audio autoplay restricted:", err);
+                });
+            }, 400);
         });
 
+        // 4. تشغيل/إيقاف الصوت
         musicBtn.addEventListener('click', () => {
             if (isPlaying) {
                 audio.pause();
@@ -415,6 +583,7 @@
             isPlaying = !isPlaying;
         });
 
+        // 5. العداد التنازلي
         const targetDate = new Date("November 9, 2026 12:00:00").getTime();
 
         const updateTimer = () => {
@@ -437,8 +606,8 @@
         setInterval(updateTimer, 1000);
         updateTimer();
 
-        // دالة إرسال التهنئة عبر الواتساب باسم الزائر ورسالته
-        function sendWhatsAppMessage() {
+        // 6. دالة إرسال الرسالة للواتساب مع مؤثر قلوب لطيف عند الضغط
+        function sendWhatsAppMessage(event) {
             const name = document.getElementById('guestName').value.trim();
             const message = document.getElementById('guestMessage').value.trim();
 
@@ -447,12 +616,16 @@
                 return;
             }
 
-            const phoneNumber = "201012577992";
-            const fullText = `أهلاً، أنا (${name}) ✨\n\n${message}`;
-            const encodedText = encodeURIComponent(fullText);
-            
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedText}`;
-            window.open(whatsappUrl, '_blank');
+            createHeartBurst(event.clientX, event.clientY);
+
+            setTimeout(() => {
+                const phoneNumber = "201012577992";
+                const fullText = `أهلاً، أنا (${name}) ✨\n\n${message}`;
+                const encodedText = encodeURIComponent(fullText);
+                
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedText}`;
+                window.open(whatsappUrl, '_blank');
+            }, 300);
         }
     </script>
 </body>
