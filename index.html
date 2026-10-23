@@ -41,7 +41,7 @@
             position: relative;
         }
 
-        /* Container for background floating hearts/flowers */
+        /* 1. القلوب والورود المتطايرة في المقدمة */
         #particles-container {
             position: fixed;
             top: 0;
@@ -49,16 +49,16 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1;
+            z-index: 99999;
             overflow: hidden;
         }
 
         .floating-element {
             position: absolute;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             user-select: none;
-            animation: floatUp 8s linear infinite;
-            opacity: 0.7;
+            animation: floatUp 7s linear infinite;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
         }
 
         @keyframes floatUp {
@@ -66,30 +66,29 @@
                 transform: translateY(105vh) rotate(0deg) scale(0.8);
                 opacity: 0;
             }
-            10% {
-                opacity: 0.8;
+            15% {
+                opacity: 1;
             }
-            90% {
-                opacity: 0.8;
+            85% {
+                opacity: 1;
             }
             100% {
-                transform: translateY(-10vh) rotate(360deg) scale(1.2);
+                transform: translateY(-10vh) rotate(360deg) scale(1.3);
                 opacity: 0;
             }
         }
 
-        /* Splash / Welcome Overlay مع خلفية العروسين الأصلية */
+        /* 2. بانر شاشة الترحيب مع صورة ماسكة الأيدي المحترمة من الكود الأصلي */
         #welcome-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(250, 247, 242, 0.85); /* لون الخلفية مع شفافة خفيفة */
-            background-image: linear-gradient(rgba(250, 247, 242, 0.85), rgba(250, 247, 242, 0.85)), url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover;
-            background-position: center;
-            z-index: 9999;
+            /* استخدام الصورة الأصلية (masque/hand holding) بخلفية راقية */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            z-index: 9998;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -104,14 +103,17 @@
             visibility: hidden;
         }
 
+        /* كارت ترحيبي زجاجي جميل */
         .welcome-card {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             padding: 40px 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             max-width: 450px;
             width: 100%;
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            border: 2px solid var(--accent-color);
         }
 
         .welcome-title {
@@ -126,9 +128,10 @@
         }
 
         .welcome-sub {
-            font-size: 1.1rem;
-            color: var(--soft-text);
+            font-size: 1.15rem;
+            color: #444;
             margin-bottom: 30px;
+            font-weight: 600;
         }
 
         .enter-btn {
@@ -139,7 +142,7 @@
             font-size: 1.15rem;
             border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(139, 94, 60, 0.3);
+            box-shadow: 0 4px 15px rgba(139, 94, 60, 0.4);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -148,21 +151,20 @@
         .enter-btn:hover {
             background-color: var(--accent-color);
             transform: translateY(-3px);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
         }
 
-        /* Glowing Effect on Click */
         .enter-btn.glow {
             animation: pulseGlow 0.6s ease-in-out forwards;
         }
 
         @keyframes pulseGlow {
             0% {
-                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.8);
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.9);
             }
             50% {
-                box-shadow: 0 0 30px 15px rgba(212, 175, 55, 1);
-                transform: scale(1.08);
+                box-shadow: 0 0 35px 20px rgba(212, 175, 55, 1);
+                transform: scale(1.1);
             }
             100% {
                 box-shadow: 0 0 50px 25px rgba(212, 175, 55, 0);
@@ -170,12 +172,12 @@
             }
         }
 
-        /* Explosive Heart Particle */
+        /* جزيئات القلوب المتفجرة عند النقر */
         .burst-heart {
             position: fixed;
             pointer-events: none;
-            z-index: 10000;
-            font-size: 1.5rem;
+            z-index: 100000;
+            font-size: 1.8rem;
             animation: burstAnimation 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
@@ -186,16 +188,16 @@
             }
             100% {
                 opacity: 0;
-                transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(var(--rot));
+                transform: translate(var(--tx), var(--ty)) scale(1.6) rotate(var(--rot));
             }
         }
 
-        /* Main Container */
+        /* 3. كارت الدعوة الرئيسي */
         .container {
             width: 100%;
             max-width: 600px;
             background-color: var(--card-bg);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             border-radius: 15px;
             margin: 20px auto;
             padding: 30px 20px;
@@ -240,7 +242,7 @@
             margin: 20px 0;
         }
 
-        /* Notice Box for Lunch Details */
+        /* مربع تنبيه الغداء */
         .lunch-notice {
             background-color: #FFFDF0;
             border: 1px dashed var(--accent-color);
@@ -256,7 +258,7 @@
             font-weight: 600;
         }
 
-        /* Section Cards */
+        /* الأقسام المختلفة */
         .section-box {
             margin: 30px 0;
             padding-top: 20px;
@@ -319,7 +321,7 @@
             color: var(--soft-text);
         }
 
-        /* Form Inputs for Wishes */
+        /* نموذج إرسال المباركة */
         .wish-form {
             display: flex;
             flex-direction: column;
@@ -364,7 +366,7 @@
             box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
         }
 
-        /* Floating Music Control Button */
+        /* زر الصوت العائم */
         .music-btn {
             position: fixed;
             bottom: 25px;
@@ -390,15 +392,15 @@
 </head>
 <body>
 
-    <!-- Container for falling background particles -->
+    <!-- حاوية القلوب والورود المتساقطة فوق الصفحة بالكامل -->
     <div id="particles-container"></div>
 
-    <!-- Audio Element -->
+    <!-- ملف الصوت -->
     <audio id="weddingAudio" loop preload="auto">
         <source src="https://mrshy8196-droid.github.io/Wedding-invitation/Assest/audio.mp3" type="audio/mp3">
     </audio>
 
-    <!-- Welcome Overlay / Splash Screen مع خلفية العروسين الأصلية -->
+    <!-- شاشة الترحيب بـ صورة العروسين (مسك الأيدي) الأصلية -->
     <div id="welcome-overlay">
         <div class="welcome-card">
             <h1 class="welcome-title">Ahmed & <span>R</span></h1>
@@ -407,7 +409,7 @@
         </div>
     </div>
 
-    <!-- Main Invitation Content -->
+    <!-- محتوى الدعوة الرئيسي -->
     <div class="container">
         <div>
             <p class="quran-verse">
@@ -432,7 +434,7 @@
             <p>مكان الغداء عند بيت العريس والموعد بعد صلاة الظهر والفرح عبارة عن غداء فقط وذلك بعد صلاة الظهر ✨</p>
         </div>
 
-        <!-- Countdown Section -->
+        <!-- العداد التنازلي -->
         <div class="section-box">
             <h2 class="section-title">
                 <i class="fas fa-hourglass-half"></i>
@@ -460,7 +462,7 @@
             </div>
         </div>
 
-        <!-- Story Section -->
+        <!-- قسم قصتنا -->
         <div class="section-box">
             <h2 class="section-title">
                 <i class="fas fa-heart"></i>
@@ -474,7 +476,7 @@
             </p>
         </div>
 
-        <!-- WhatsApp Section -->
+        <!-- قسم إرسال التهنئة -->
         <div class="section-box">
             <h2 class="section-title">
                 <i class="fas fa-comment-dots"></i>
@@ -493,7 +495,7 @@
         </div>
     </div>
 
-    <!-- Floating Audio Toggle Button -->
+    <!-- زر تشغيل الصوت -->
     <div class="music-btn" id="musicToggle" title="تشغيل / إيقاف الموسيقى">
         <i class="fas fa-pause" id="musicIcon"></i>
     </div>
@@ -507,7 +509,7 @@
         const particlesContainer = document.getElementById('particles-container');
         let isPlaying = false;
 
-        // 1. خروج قلوب وورود متطايرة في خلفية الصفحة باستمرار
+        // 1. توليد القلوب والورود المتطايرة في الطبقة العلوية
         const symbols = ['❤️', '💖', '🌸', '🌹', '✨', '💕', '🌷'];
         
         function createFloatingElement() {
@@ -515,25 +517,25 @@
             el.className = 'floating-element';
             el.innerText = symbols[Math.floor(Math.random() * symbols.length)];
             el.style.left = Math.random() * 100 + 'vw';
-            el.style.animationDuration = (Math.random() * 4 + 6) + 's';
-            el.style.fontSize = (Math.random() * 1.2 + 0.8) + 'rem';
+            el.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            el.style.fontSize = (Math.random() * 1.2 + 0.9) + 'rem';
             particlesContainer.appendChild(el);
 
             setTimeout(() => {
                 el.remove();
-            }, 10000);
+            }, 8000);
         }
-        setInterval(createFloatingElement, 400);
+        setInterval(createFloatingElement, 350);
 
-        // 2. دالة انفجار قلوب عند الضغط على الأزرار (Burst Effects)
+        // 2. انفجار القلوب بوضوح عند النقر
         function createHeartBurst(x, y) {
-            for (let i = 0; i < 25; i++) {
+            for (let i = 0; i < 30; i++) {
                 const burst = document.createElement('div');
                 burst.className = 'burst-heart';
                 burst.innerText = symbols[Math.floor(Math.random() * symbols.length)];
                 
                 const angle = Math.random() * Math.PI * 2;
-                const dist = Math.random() * 120 + 50;
+                const dist = Math.random() * 140 + 60;
                 const tx = Math.cos(angle) * dist + 'px';
                 const ty = Math.sin(angle) * dist + 'px';
                 const rot = (Math.random() * 360) + 'deg';
@@ -550,13 +552,12 @@
             }
         }
 
-        // 3. عند الضغط على زر افتتاح الدعوة
+        // 3. عند الضغط على زر الدخول
         enterBtn.addEventListener('click', (e) => {
             const rect = enterBtn.getBoundingClientRect();
             const clickX = rect.left + rect.width / 2;
             const clickY = rect.top + rect.height / 2;
 
-            // توهج الزرار + انفجار القلوب
             enterBtn.classList.add('glow');
             createHeartBurst(clickX, clickY);
 
@@ -571,7 +572,7 @@
             }, 400);
         });
 
-        // 4. تشغيل/إيقاف الصوت
+        // 4. التحكم بالصوت
         musicBtn.addEventListener('click', () => {
             if (isPlaying) {
                 audio.pause();
@@ -606,7 +607,7 @@
         setInterval(updateTimer, 1000);
         updateTimer();
 
-        // 6. دالة إرسال الرسالة للواتساب مع مؤثر قلوب لطيف عند الضغط
+        // 6. إرسال واتساب
         function sendWhatsAppMessage(event) {
             const name = document.getElementById('guestName').value.trim();
             const message = document.getElementById('guestMessage').value.trim();
